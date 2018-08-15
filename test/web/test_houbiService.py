@@ -11,7 +11,7 @@ class TestHoubiService(unittest.TestCase):
         self.assertIsNotNone(data)
         self.assertEqual(data['status'], 'ok')
 
-    def test_get_account(self):
+    def test_get_accounts(self):
         data = houbi.get_accounts()
         print(data)
         self.assertIsNotNone(data)
