@@ -10,6 +10,7 @@ class TestSeaTurtle(unittest.TestCase):
         self.assertGreater(sea1.price_precision, 0)
         self.assertGreater(sea1.init_base_amount, 0)
         self.assertGreater(sea1.init_quote_amount, 0)
+        print(sea1)
 
 
 

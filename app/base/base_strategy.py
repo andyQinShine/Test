@@ -4,9 +4,9 @@ from itertools import count
 
 class StrategyBase(EnvBase):
     strategy_counter = count(1)
-    def __init__(self, base, quote):
+    def __init__(self, base, quote='btc'):
         self.name = f'{self.__class__.__name__}_{next(self.strategy_counter)}'
-        self.env.strategies.update(self.name, self)
+        self.env.strategies.update({self.name :  self})
         self.base = base
         self.quote = quote
         self.symbol = base + ''+ quote
