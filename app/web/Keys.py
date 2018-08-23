@@ -1,7 +1,7 @@
 # 此处填写APIKEY
 
-ACCESS_KEY = "0a90bcf3-2e0a029c-a058a8fb-f5771"
-SECRET_KEY = "1e627f8d-a444d33d-40087555-720fc"
+ACCESS_KEY = "**************************"
+SECRET_KEY = "****************************"
 
 # API 请求地址
 MARKET_URL = "https://api.huobi.pro" # https://www.huobipro.com
