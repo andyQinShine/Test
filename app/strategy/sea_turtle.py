@@ -1,5 +1,6 @@
 from app.base.base_strategy import StrategyBase
 from app.base.constants import Period
+from app.base.bar_reader import BarReader
 
 class SeaTurtle(StrategyBase):
     def __init__(self, base, quote = 'btc'):
@@ -16,6 +17,20 @@ class SeaTurtle(StrategyBase):
         self.long_out_date = long_out_date
         # 获取bar的粒度
         self.period = period
+        # 系统标志
+        self.sys1 = True
 
     def handel_data(self):
-        pass
+        bar_size = self.short_in_date
+        if self.sys1 == False:
+            bar_size = self.long_in_date
+
+        barReader = BarReader(self)
+        # 获取市场最新数据
+        market_data = barReader.read_bar(size=bar_size)
+        # 获取市场最新价格
+        price = barReader.read_current_price()
+        # 获取ATR
+        atr = barReader.calc_data_atr()
+
+
