@@ -21,10 +21,16 @@ class TestSeaTurtle(unittest.TestCase):
 
     def test_getMarketData(self):
         self.seal.init_system(period=Period.DAY_1.value)
-        reader = BarReader()
-        reader.read_bar(strage=self.seal, size=21)
+        reader = BarReader(self.seal)
+        reader.read_bar(size=21)
         self.assertIsNotNone(self.seal.market_data)
         print(self.seal.market_data)
+
+    def test_getCurrent_price(self):
+        reader = BarReader(self.seal)
+        price = reader.read_current_price()
+        print(price)
+        self.assertIsNotNone(price)
 
 if __name__ == "__main__":
     unittest.main()
