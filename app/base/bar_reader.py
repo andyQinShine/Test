@@ -3,6 +3,7 @@ from app.base.base_strategy import StrategyBase
 from app.web import HuobiServices as huobi
 import pandas as pd
 import talib
+from app.base import util
 
 class BarReader(Enviroment):
 
@@ -36,12 +37,7 @@ class BarReader(Enviroment):
 
         atr_array = talib.ATR(high_price, low_price, close_price, size - 1)
         atr = atr_array[0]
-        atr = self.as_num(atr,self.strategy.price_precision)
+        atr = util.as_num(atr,self.strategy.price_precision)
         # atr = float(atr)
         self.strategy.ATR = atr
         return atr
-
-    def as_num(self, x, precision):
-        format_str = "{:." + str(precision) + "f}"
-        r_y = format_str.format(float(x))
-        return r_y
