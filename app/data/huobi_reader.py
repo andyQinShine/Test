@@ -1,7 +1,7 @@
 from app.web import HuobiServices
 from app.data.data_reader_base import DataReaderBase
 from app.data.base_bar import BaseBar
-from app.web import tushare_service as ts
+from app.web.tushare_service import TushareService
 
 import arrow
 
@@ -18,13 +18,17 @@ class HuobiReader(DataReaderBase):
         if todate is None:
             todate = self.todate
 
+        ts = TushareService()
         df = ts.getCoinbar(symbol=self.ticker, start_date=fromdate, end_date=todate)
         final_data = []
 
-        for ohlc in df:
-            if todate:
-                if arrow.get(ohlc['date']) >= arrow.get(todate):
-                    break
+        for i in range(0, len(df)):
+            ohlc = df.iloc[i]
+            print(ohlc['date'])
+            print(ohlc['open'])
+            # if todate:
+                # if arrow.get(ohlc['date']) >= arrow.get(todate):
+                #     break
 
             if arrow.get(ohlc['date']) >= arrow.get(fromdate):
                 ohlc['open'] = float(ohlc['open'])
